@@ -19,6 +19,7 @@ class PokeCard(qtw.QWidget):
             QLabel {
                 border: 1px solid gray;
                 border-radius: 5px;
+                
             }
         """)
 
