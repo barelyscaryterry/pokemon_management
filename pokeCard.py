@@ -10,9 +10,8 @@ class PokeCard(qtw.QWidget):
         layout.setContentsMargins(10,10,10,10)
         self.setStyleSheet("""
                     QWidget {
-                        border: 1px solid lightgray;
+                        border: 1px solid gray;
                         border-radius: 5px;
-                        box-shadow: 2px 2px 2px #aaa;
                     }
             """)
         name_label = qtw.QLabel(self.poke.Name)
@@ -24,7 +23,7 @@ class PokeCard(qtw.QWidget):
         picture_label.setPixmap(qtg.QPixmap(self.poke.img))
         picture_label.setStyleSheet("""
             QLabel {
-                border: 1px solid lightgray;
+                border: 1px solid gray;
                 border-radius: 5px;
             }
         """)
