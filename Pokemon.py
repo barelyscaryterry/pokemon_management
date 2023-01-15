@@ -15,4 +15,4 @@ class Pokemon:
         self.moves = []
         self.level = "1"
         self.Name = self.Name.replace("'", "")
-        self.img = f"images\\{self.Name.lower()}.png"
+        self.img = f"images\\sprites\\{self.Name.lower()}.png"

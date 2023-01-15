@@ -1,5 +1,6 @@
 import PyQt5.QtGui as qtg
 import PyQt5.QtWidgets as qtw
+import PyQt5.QtCore as qtc
 #A container that displays the name, picture, and moves of a pokemon.  Used primarily in development
 class PokeCard(qtw.QWidget):
     def __init__(self, pokemon, parent=None):
@@ -7,26 +8,23 @@ class PokeCard(qtw.QWidget):
         self.poke = pokemon
 
         layout = qtw.QVBoxLayout(self)
-        layout.setContentsMargins(10,10,10,10)
-        name_label = qtw.QLabel(self.poke.Name)
+        layout.setAlignment(qtc.Qt.AlignmentFlag.AlignHCenter)
+        name_label = qtw.QLabel(f"#{self.poke.Number} - {self.poke.Name}")
         
 
         layout.addWidget(name_label)
 
         picture_label = qtw.QLabel()
         picture_label.setPixmap(qtg.QPixmap(self.poke.img))
-        picture_label.setStyleSheet("""
-            QLabel {
-                border: 1px solid gray;
-                border-radius: 5px;
-                
-            }
-        """)
+        picture_label.setAlignment(qtc.Qt.AlignmentFlag.AlignHCenter)
+        picture_label.setFixedSize(100,100)
+        
+
+
 
         layout.addWidget(picture_label)
         
         types = self.TypeImages(self.poke.Type1, self.poke.Type2)
-
         layout.addWidget(types)
 
 
@@ -38,6 +36,9 @@ class PokeCard(qtw.QWidget):
             "Taunt"
         ])
         layout.addWidget(moves_list)
+        
+
+        layout.setAlignment(qtc.Qt.AlignmentFlag.AlignHCenter)
         self.setLayout(layout)
 
         remove_button = qtw.QPushButton("Remove")
@@ -52,11 +53,16 @@ class PokeCard(qtw.QWidget):
         def __init__(self, type1, type2=None, parent=None):
             super().__init__(parent)
             layout = qtw.QHBoxLayout()
+            layout.setAlignment(qtc.Qt.AlignmentFlag.AlignHCenter)
             type1_img = qtg.QPixmap(f"images\\sm_icon\\{type1}_sm_icon.png")
             type2_img = qtg.QPixmap(f"images\\sm_icon\\{type2}_sm_icon.png")
             type1_label = qtw.QLabel()
             type2_label = qtw.QLabel()
             type1_label.setPixmap(type1_img)
+            type2_label.setScaledContents(True)
+            type2_label.setFixedSize(50, 50)
+            type1_label.setScaledContents(True)
+            type1_label.setFixedSize(50, 50)
             type2_label.setPixmap(type2_img)
             layout.addWidget(type1_label)
             if (type2 != ""):
