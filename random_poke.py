@@ -35,12 +35,9 @@ class RandomPokemonWindow(qtw.QWidget):
             # Add name to label
             random_mon = random.choice(list(db.keys()))
             mon = pk.Pokemon(db[random_mon])
-
             poke_container = PokeCard(mon)
             
             self.layout().addWidget(poke_container)
-            my_label.setText(poke_container.poke.Name)
-        
 
         self.layout().addWidget(my_btn)
 
