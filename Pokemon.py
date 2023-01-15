@@ -13,5 +13,6 @@ class Pokemon:
         self.height = ""
         self.base_happiness = ""
         self.moves = []
-        self.level = ""
+        self.level = "1"
+        self.Name = self.Name.replace("'", "")
         self.img = f"C:\\Users\\terre\\OneDrive\\Desktop\\workspace\\pokemon\\images\\{self.Name.lower()}.png"
