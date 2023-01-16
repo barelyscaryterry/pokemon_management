@@ -12,8 +12,8 @@ class PokeCard(qtw.QWidget):
         layout.setAlignment(qtc.Qt.AlignmentFlag.AlignCenter)
 
 
-        name_label = qtw.QLabel(f"#{self.poke.Number} - {self.poke.Name}")
-        name_label.setFont(qtg.QFont("Helvetica", 18, 2))
+        name_label = qtw.QLabel(f"No. {self.poke.Number}: {self.poke.Name}")
+        name_label.setFont(qtg.QFont("Ariel", 14, 2))
         layout.addWidget(name_label)
 
 
@@ -33,33 +33,31 @@ class PokeCard(qtw.QWidget):
         ])
         layout.addWidget(moves_list)
         
-
-        layout.setAlignment(qtc.Qt.AlignmentFlag.AlignHCenter)
-        self.setLayout(layout)
-
         remove_button = qtw.QPushButton("Remove")
         layout.addWidget(remove_button)
         remove_button.clicked.connect(self.remove_container)
 
+        layout.setAlignment(qtc.Qt.AlignmentFlag.AlignHCenter)
+        self.setLayout(layout)
+
+       
+
     def remove_container(self):
         self.setParent(None)
         self.deleteLater()
+    
+    class IVStats(qtw.QWidget):
+        def __init__(self, parents = None):
+            super().__init__(parents)
+
 
     class TypeImages(qtw.QWidget):
         def __init__(self, type1, type2=None, parent=None):
             super().__init__(parent)
             layout = qtw.QHBoxLayout()
             layout.setAlignment(qtc.Qt.AlignmentFlag.AlignHCenter)
-            type1_img = qtg.QPixmap(f"images\\sm_icon\\{type1}_sm_icon.png")
-            type2_img = qtg.QPixmap(f"images\\sm_icon\\{type2}_sm_icon.png")
-            type1_label = qtw.QLabel()
-            type2_label = qtw.QLabel()
-            type1_label.setPixmap(type1_img)
-            type2_label.setScaledContents(True)
-            type2_label.setFixedSize(50, 50)
-            type1_label.setScaledContents(True)
-            type1_label.setFixedSize(50, 50)
-            type2_label.setPixmap(type2_img)
+            type1_label = WBImages(f"images\\sm_icon\\{type1}_sm_icon.png", 50)
+            type2_label = WBImages(f"images\\sm_icon\\{type2}_sm_icon.png", 50)
             layout.addWidget(type1_label)
             if (type2 != ""):
                 layout.addWidget(type2_label)
