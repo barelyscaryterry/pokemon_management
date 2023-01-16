@@ -1,6 +1,7 @@
 import PyQt5.QtGui as qtg
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtCore as qtc
+from WBImages import WBImages
 #A container that displays the name, picture, and moves of a pokemon.  Used primarily in development
 class PokeCard(qtw.QWidget):
     def __init__(self, pokemon, parent=None):
@@ -8,20 +9,15 @@ class PokeCard(qtw.QWidget):
         self.poke = pokemon
 
         layout = qtw.QVBoxLayout(self)
-        layout.setAlignment(qtc.Qt.AlignmentFlag.AlignHCenter)
-        name_label = qtw.QLabel(f"#{self.poke.Number} - {self.poke.Name}")
-        
+        layout.setAlignment(qtc.Qt.AlignmentFlag.AlignCenter)
 
+
+        name_label = qtw.QLabel(f"#{self.poke.Number} - {self.poke.Name}")
+        name_label.setFont(qtg.QFont("Helvetica", 18, 2))
         layout.addWidget(name_label)
 
-        picture_label = qtw.QLabel()
-        picture_label.setPixmap(qtg.QPixmap(self.poke.img))
-        picture_label.setAlignment(qtc.Qt.AlignmentFlag.AlignHCenter)
-        picture_label.setFixedSize(100,100)
-        
 
-
-
+        picture_label = WBImages(self.poke.img, 100, True)
         layout.addWidget(picture_label)
         
         types = self.TypeImages(self.poke.Type1, self.poke.Type2)

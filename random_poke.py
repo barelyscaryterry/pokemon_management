@@ -36,6 +36,7 @@ class RandomPokemonWindow(qtw.QWidget):
             random_mon = random.choice(list(db.keys()))
             mon = pk.Pokemon(db[random_mon])
             poke_container = PokeCard(mon)
+           
             
             self.layout().addWidget(poke_container)
 
