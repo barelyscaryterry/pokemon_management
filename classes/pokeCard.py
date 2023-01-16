@@ -1,7 +1,7 @@
 import PyQt5.QtGui as qtg
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtCore as qtc
-from WBImages import WBImages
+from classes.WBImages import WBImages
 #A container that displays the name, picture, and moves of a pokemon.  Used primarily in development
 class PokeCard(qtw.QWidget):
     def __init__(self, pokemon, parent=None):
@@ -64,8 +64,8 @@ class PokeCard(qtw.QWidget):
             super().__init__(parent)
             layout = qtw.QHBoxLayout()
             layout.setAlignment(qtc.Qt.AlignmentFlag.AlignHCenter)
-            type1_label = WBImages(f"images\\sm_icon\\{type1}_sm_icon.png", 75)
-            type2_label = WBImages(f"images\\sm_icon\\{type2}_sm_icon.png", 75)
+            type1_label = WBImages(f"images\\sm_icon\\{type1}_sm_icon.png", 70)
+            type2_label = WBImages(f"images\\sm_icon\\{type2}_sm_icon.png", 70)
             layout.addWidget(type1_label)
             if (type2 != ""):
                 layout.addWidget(type2_label)
@@ -81,7 +81,7 @@ class PokeCard(qtw.QWidget):
             poke_stat = ""
             IV_label = qtw.QLabel()
             for stat in stats:
-                poke_stat += f"{stat}\n{str(getattr(self, stat))}\n"
+                poke_stat += f"\n{stat}: \n{str(getattr(self, stat))}"
             IV_label.setText(poke_stat)
             layout.addWidget(IV_label)
             self.setLayout(layout)

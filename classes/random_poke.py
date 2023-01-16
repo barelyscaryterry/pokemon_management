@@ -1,9 +1,9 @@
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
-import Pokemon as pk
+import classes.Pokemon as pk
 import csv
 import random
-from pokeCard import PokeCard
+from classes.pokeCard import PokeCard
 # use classes in pyqt5
 def init_db():
         clean_data = {}
