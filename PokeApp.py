@@ -1,6 +1,6 @@
 import PyQt5.QtWidgets as qtw
-from classes.random_poke import RandomPokemonWindow
-from box.SearchBar import SearchBar
+from classes.pokemon.random_poke import RandomPokemonWindow
+from classes.box.SearchBar import SearchBar
 import csv
 # use classes in pyqt5
 
