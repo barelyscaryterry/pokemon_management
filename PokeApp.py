@@ -10,12 +10,11 @@ class MainWindow(qtw.QWidget):
     
     def __init__(self):
         super().__init__()
-        self.db = InitDatabase().data
         self.setWindowTitle("Pokemon Manager")
         self.setLayout(qtw.QHBoxLayout())
         tabs = qtw.QTabWidget()
         tabs.addTab(RandomPokemonWindow(), "Random Pokemon")
-        tabs.addTab(SearchWindow(self.db), "Search")
+        tabs.addTab(SearchWindow(), "Search")
         self.layout().addWidget(tabs)
         
         self.show()

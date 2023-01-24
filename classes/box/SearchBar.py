@@ -2,14 +2,15 @@ from PyQt5 import QtWidgets
 import PyQt5.QtGui as qtg
 from classes.pokemon.Pokemon import Pokemon
 from classes.util.WBImages import WBImages
-from classes.pokemon.pokeCard import PokeCard
+from classes.util.InitDatabase import InitDatabase
 class SearchBar(QtWidgets.QWidget):
-    def __init__(self, dataset = None):
+    def __init__(self):
         super().__init__()
-        self.dataset = dataset
+        self.data = InitDatabase()
+        self.dataset = self.data.fetch_keys()
         self.query_results = []
         self.results_view = QtWidgets.QWidget()
-        self.on_add_pressed = self.dataset["Chesnaught"]
+    
 
         self.search_bar = QtWidgets.QLineEdit(self)
         self.search_bar.textChanged.connect(self.on_text_changed)
@@ -26,10 +27,7 @@ class SearchBar(QtWidgets.QWidget):
         self.showing_label.setText(f"Showing results for '{text}': ")
         query = text.lower()
         
-        self.query_results = [
-            (name, self.dataset[name]) for name in self.dataset
-            if query in name.lower()
-        ]
+        self.query_results = list(filter(lambda x: query in x, self.dataset))
 
         self.query_results = self.query_results[:10]
         self.layout.removeWidget(self.results_view)
@@ -44,7 +42,8 @@ class SearchBar(QtWidgets.QWidget):
                     row = 1
                 else :
                     row = 0
-                pk = Pokemon(self.query_results[number][1])
+                pname = self.query_results[number]
+                pk = Pokemon(self.data.fetch_data(pname))
                 pokeimg = WBImages(pk.img, 70, True) #Where to swap in widget
                 pokeimg.layout().addWidget(QtWidgets.QLabel(pk.Name))
                 add_button = QtWidgets.QPushButton("Add")
@@ -60,5 +59,3 @@ class SearchBar(QtWidgets.QWidget):
         
         self.results_view.setLayout(query_images_layout_first5)
         self.layout.addWidget(self.results_view)
-    def open_pokecard(self, mon):
-        self.on_add_pressed = mon
