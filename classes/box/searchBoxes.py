@@ -14,11 +14,13 @@ class SearchBoxes(qtw.QWidget):
         wbimg = WBImages(self.mon.img, 70, True)
         add_button = qtw.QPushButton("Add")
         add_button.connect(self.add_btn_clicked())
-        self.setLayout(qtw.QVBoxLayout())
-        self.layout().addWidget(name_label)
-        self.layout().addWidget(wbimg)
-        self.layout().addWidget(add_button)
+        my_layout = qtw.QVBoxLayout()
+        my_layout.addWidget(name_label)
+        my_layout.addWidget(wbimg)
+        my_layout.addWidget(add_button)
+        self.setLayout(my_layout)
     def add_btn_clicked(self):
         if self.name == "":
             pass
-        self.on_add_clicked = self.name
+        else:
+            self.on_add_clicked = self.name
