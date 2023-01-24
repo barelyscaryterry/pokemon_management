@@ -1,6 +1,6 @@
 import json
 import h5py
-class InitDatabase:
+class PokeData:
     def __init__(self):
         pass
     def fetch_data(self, key):

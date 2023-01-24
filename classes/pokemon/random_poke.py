@@ -1,14 +1,14 @@
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
 import classes.pokemon.Pokemon as pk
-from classes.util.InitDatabase import InitDatabase
+from classes.util.PokeData import PokeData
 import random
 from classes.pokemon.pokeCard import PokeCard
 # use classes in pyqt5
 class RandomPokemonWindow(qtw.QWidget):
     
     def __init__(self):
-        self.db = InitDatabase()
+        self.db = PokeData()
         super().__init__()
         self.setWindowTitle("Pokedex")
         self.setLayout(qtw.QHBoxLayout())
@@ -24,7 +24,7 @@ class RandomPokemonWindow(qtw.QWidget):
         def press_it():
             # Add name to label
             random_mon = random.choice(self.db.fetch_keys())
-            mon = pk.Pokemon(self.db.fetch_data(random_mon))
+            mon = pk.Pokemon(random_mon)
             poke_container = PokeCard(mon)
            
             

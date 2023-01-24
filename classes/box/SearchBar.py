@@ -2,11 +2,11 @@ from PyQt5 import QtWidgets
 import PyQt5.QtGui as qtg
 from classes.pokemon.Pokemon import Pokemon
 from classes.util.WBImages import WBImages
-from classes.util.InitDatabase import InitDatabase
+from classes.util.PokeData import PokeData
 class SearchBar(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
-        self.data = InitDatabase()
+        self.data = PokeData()
         self.dataset = self.data.fetch_keys()
         self.query_results = []
         self.results_view = QtWidgets.QWidget()
@@ -43,7 +43,7 @@ class SearchBar(QtWidgets.QWidget):
                 else :
                     row = 0
                 pname = self.query_results[number]
-                pk = Pokemon(self.data.fetch_data(pname))
+                pk = Pokemon(pname)
                 pokeimg = WBImages(pk.img, 70, True) #Where to swap in widget
                 pokeimg.layout().addWidget(QtWidgets.QLabel(pk.Name))
                 add_button = QtWidgets.QPushButton("Add")
