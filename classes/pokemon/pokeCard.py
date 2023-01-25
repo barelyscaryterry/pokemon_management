@@ -2,11 +2,12 @@ import PyQt5.QtGui as qtg
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtCore as qtc
 from classes.util.WBImages import WBImages
+from classes.pokemon.Pokemon import Pokemon
 #A container that displays the name, picture, and moves of a pokemon.  Used primarily in development
 class PokeCard(qtw.QWidget):
-    def __init__(self, pokemon, parent=None):
+    def __init__(self, name, parent=None):
         super().__init__(parent)
-        self.poke = pokemon
+        self.poke = Pokemon(name)
 
         layout = qtw.QVBoxLayout(self)
         layout.setAlignment(qtc.Qt.AlignmentFlag.AlignCenter)

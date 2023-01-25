@@ -1,6 +1,6 @@
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
-import classes.pokemon.Pokemon as pk
+from classes.pokemon.Pokemon import Pokemon
 from classes.util.PokeData import PokeData
 import random
 from classes.pokemon.pokeCard import PokeCard
@@ -24,8 +24,7 @@ class RandomPokemonWindow(qtw.QWidget):
         def press_it():
             # Add name to label
             random_mon = random.choice(self.db.fetch_keys())
-            mon = pk.Pokemon(random_mon)
-            poke_container = PokeCard(mon)
+            poke_container = PokeCard(random_mon)
            
             
             self.layout().addWidget(poke_container)

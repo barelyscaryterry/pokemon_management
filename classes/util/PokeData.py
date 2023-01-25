@@ -22,8 +22,11 @@ class PokeData:
     #         reader = csv.DictReader(csv_file)
     #         for row in reader:
     #             name = row.pop("Name")
-    #             row.pop("Legendary")
-    #             data[name.lower()] = row
+    #             if len(name.split(" ")) > 1:
+    #                 continue
+    #             else:
+    #                 row.pop("Legendary")
+    #                 data[name.lower()] = row
     #     return data
     
     # def write_dict_to_hdf5(self):

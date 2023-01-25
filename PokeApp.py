@@ -1,6 +1,6 @@
 import PyQt5.QtWidgets as qtw
 from classes.pokemon.random_poke import RandomPokemonWindow
-from classes.box.SearchBar import SearchBar
+from classes.box.searchWindow import SearchWindow
 # use classes in pyqt5
 
 class MainWindow(qtw.QWidget):
@@ -12,7 +12,7 @@ class MainWindow(qtw.QWidget):
         self.setLayout(qtw.QHBoxLayout())
         tabs = qtw.QTabWidget()
         tabs.addTab(RandomPokemonWindow(), "Random Pokemon")
-        tabs.addTab(SearchBar(), "Search")
+        tabs.addTab(SearchWindow(), "Search")
         self.layout().addWidget(tabs)
         
         self.show()
